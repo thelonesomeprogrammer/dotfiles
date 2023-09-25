@@ -541,7 +541,7 @@ $env.config = {
   ]
 }
 
-source /home/marrinus/.config/broot/launcher/nushell/br
+source ~/.config/broot/launcher/nushell/br
 source ~/.cache/starship/init.nu
 source ~/.zoxide.nu
 source ~/.local/share/atuin/init.nu

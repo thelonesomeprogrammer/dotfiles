@@ -304,17 +304,15 @@ kset({ "i", "s" }, "<C-h>", function()
   end
 end)
 
-
--- keyboard
-function Keyboard()
-  kset({'n','v'},"m","i",{})
-  kset({'n','v'},"i","k",{})
-  kset({'n','v'},"e","j",{})
-  kset({'n','v'},"n","h",{})
-  kset({'n','v'},"o","l",{})
-  kset({'n','v'},"l","a",{})
-end
---Keyboard()
+{{- if eq .keyboard true }}
+  -- keyboard
+kset({'n','v'},"m","i",{})
+kset({'n','v'},"i","k",{})
+kset({'n','v'},"e","j",{})
+kset({'n','v'},"n","h",{})
+kset({'n','v'},"o","l",{})
+kset({'n','v'},"l","a",{})
+{{- end }}
 
     -- move stuff in VISUAL mode 
 kset("v", "<S-Up>", ":m '<-2<CR>gv=gv")

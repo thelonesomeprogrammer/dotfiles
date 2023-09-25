@@ -77,7 +77,7 @@ $env.NU_LIB_DIRS = [
 $env.NU_PLUGIN_DIRS = [
     # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
-$env.PATH = ($env.PATH | prepend '/home/marrinus/.cargo/bin/')
+$env.PATH = ($env.PATH | prepend '~/.cargo/bin/')
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 zoxide init nushell | save -f ~/.zoxide.nu

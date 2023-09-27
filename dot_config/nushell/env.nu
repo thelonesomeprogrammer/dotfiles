@@ -82,6 +82,7 @@ mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
 zoxide init nushell | save -f ~/.zoxide.nu
 $env.EDITOR = nvim
+$env.XKB_DEFAULT_LAYOUT = dk
 
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:

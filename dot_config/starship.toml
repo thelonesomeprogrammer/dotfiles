@@ -244,3 +244,5 @@ symbol = " "
 [scala]
 symbol = " "
 
+[shell]
+disabled = false

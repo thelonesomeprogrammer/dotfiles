@@ -1,0 +1,14 @@
+[data]
+    keyboard = false
+
+[diff]
+command = "nvim"
+args = ["-d", "{{ .Destination }}", "{{ .Target }}"]
+
+[merge]
+command = "nvim"
+args = ["-d", "{{ .Source }}", "{{ .Target }}", "{{ .Destination }}"]
+
+[git]
+    autoCommit = true
+    autoPush = true

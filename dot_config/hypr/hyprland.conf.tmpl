@@ -17,8 +17,9 @@ monitor=eDP-1,1920x1080@60,0x0,1
 
 # starting some apps
 exec-once = dunst
-exec-once = hyprpaper
+exec-once = /home/marrinus/.config/hypr/cleanup_after_start.sh
 exec-once = batsignal -bie -f90 -D "shutdown now"
+exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec-once = rusty-bar
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -69,11 +70,6 @@ decoration {
 
 
     rounding = 10
-
-    drop_shadow = yes
-    shadow_range = 4
-    shadow_render_power = 3
-    col.shadow = rgba(1a1a1aee)
 }
 
 animations {
@@ -99,51 +95,24 @@ dwindle {
     preserve_split = yes # you probably want this
 }
 
-master {
-    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-    new_is_master = true
-}
 
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
     workspace_swipe = on
 }
 
-# Example per-device config
-# See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-device:epic mouse V1 {
-    sensitivity = -0.5
-}
-
-# Example windowrule v1
-# windowrule = float, ^(kitty)$
-# Example windowrule v2
-# windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-# See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-
-
-# See https://wiki.hyprland.org/Configuring/Keywords/ for more
 $mainMod = SUPER
+$terminal = alacritty
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-bind = $mainMod, E, exec, wezterm -e emacs -nw
-bind = $mainMod, Y, exec, emacs
 bind = $mainMod, S, exec, vivaldi-stable
-bind = $mainMod, T, exec, wezterm
-bind = $mainMod, ENTER, exec, wezterm
-bind = $mainMod, C, exec, code
-bind = $mainMod, W, exec, trilium
-bind = $mainMod, Z, exec, wezterm -e helix
-bind = $mainMod, V, exec, evince
-bind = $mainMod, B, exec, bluetooth-manager
-bind = $mainMod, U, exec, wezterm -e alsamixer
-bind = $mainMod, N, exec, wezterm -e nvim
-bind = $mainMod, D, exec, discord
+bind = $mainMod, T, exec, $terminal
+bind = $mainMod, ENTER, exec, $terminal
 bind = $mainMod, A, killactive, 
 bind = $mainMod, Q, exit, 
 bind = $mainMod, X, exec, wezterm -e joshuto
 bind = $mainMod, F, togglefloating, 
-bind = $mainMod, R, exec, fuzzel -T "wezterm -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
+bind = $mainMod, R, exec, fuzzel -T "alacritty -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l

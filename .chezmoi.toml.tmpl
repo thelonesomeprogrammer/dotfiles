@@ -3,11 +3,11 @@
 
 [diff]
 command = "nvim"
-args = ["-d", "{{ .Destination }}", "{{ .Target }}"]
+args = ["-d", "{{"{{"}} .Destination {{"}}"}}", "{{"{{"}} .Target {{"}}"}}"]
 
 [merge]
 command = "nvim"
-args = ["-d", "{{ .Source }}", "{{ .Target }}", "{{ .Destination }}"]
+args = ["-d", "{{"{{"}} .Source {{"}}"}}", "{{"{{"}} .Target {{"}}"}}", "{{"{{"}} .Destination {{"}}"}}"]
 
 [git]
     autoCommit = true

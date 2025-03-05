@@ -393,6 +393,16 @@ kset("v", "<S-Down>", ":m '>+1<CR>gv=gv")
 kset("v", "K", ":m '<-2<CR>gv=gv")
 kset("v", "<J>", ":m '>+1<CR>gv=gv")
 
+{{- if eq .keyboard true }}
+  -- keyboard
+kset({'n','v'},"m","i",{})
+kset({'n','v'},"i","k",{})
+kset({'n','v'},"e","j",{})
+kset({'n','v'},"n","h",{})
+kset({'n','v'},"o","l",{})
+kset({'n','v'},"l","a",{})
+{{- end }}
+
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = false,

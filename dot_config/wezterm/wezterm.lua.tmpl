@@ -35,6 +35,38 @@ config.keys = {
     mods = 'ALT',
     action = wezterm.action.CloseCurrentPane { confirm = true },
   },
+
+{{- if eq .keyboard true }}
+  {
+    key = 'o',
+    mods = 'CTRL',
+    action = wezterm.action.SendKey {
+      key = 'RightArrow'
+    }
+  },
+  {
+    key = 'n',
+    mods = 'CTRL',
+    action = wezterm.action.SendKey {
+      key = 'LeftArrow'
+    }
+  },
+{
+    key = 'i',
+    mods = 'CTRL',
+    action = wezterm.action.SendKey {
+      key = 'UpArrow'
+    }
+  },
+  {
+    key = 'e',
+    mods = 'CTRL',
+    action = wezterm.action.SendKey {
+      key = 'DownArrow'
+    }
+  }
+
+{{- end }}
 }
 
 -- For example, changing the color scheme:

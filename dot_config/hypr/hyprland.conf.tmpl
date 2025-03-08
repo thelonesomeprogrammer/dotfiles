@@ -11,16 +11,29 @@
 #
 
 # See https://wiki.hyprland.org/Configuring/Monitors/
-monitor=eDP-1,1920x1080@60,0x0,1
 
+{{ if eq .dual_monitor true }}
+monitor=DP-1,preferred,0x0,auto
+monitor=HDMI-A-1,preferred,1920x0,auto
+{{ else }}
+monitor=eDP-1,1920x1080@60,0x0,1
+{{ end }}
 
 
 # starting some apps
 exec-once = dunst
+<<<<<<< Updated upstream
 exec-once = /home/marrinus/.config/hypr/cleanup_after_start.sh
 exec-once = batsignal -bie -f90 -D "shutdown now"
 exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+=======
+{{ if eq .laptop true }}
+exec-once = batsignal -bie -f90 -D "shutdown now"
+{{ end }}
+{{ if eq .rusty_bar true }}
+>>>>>>> Stashed changes
 exec-once = rusty-bar
+{{ end }}
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -40,11 +53,14 @@ input {
 
     follow_mouse = 1
 
+
+{{ if eq .laptop true }}
     touchpad {
         natural_scroll = no
-	tap-to-click = true
-	drag_lock = true
+        tap-to-click = true
+        drag_lock = true
     }
+{{ end }}
 
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
 }
@@ -106,17 +122,69 @@ $terminal = alacritty
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, S, exec, vivaldi-stable
+<<<<<<< Updated upstream
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, ENTER, exec, $terminal
 bind = $mainMod, A, killactive, 
 bind = $mainMod, F, togglefloating, 
 bind = $mainMod, R, exec, fuzzel -T "alacritty -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
+=======
+bind = $mainMod, T, exec, wezterm
+bind = $mainMod, A, killactive, 
+bind = $mainMod, R, exec, fuzzel -T "wezterm -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
+bind = $mainMod SHIFT, Q, exit, 
+
+
+>>>>>>> Stashed changes
 
 # Move focus with mainMod + arrow keys
+{{ if eq .keyboard true }}
+
+# Move focus with mainMod + arrow keys
+bind = $mainMod, N, movefocus, l
+bind = $mainMod, O, movefocus, r
+bind = $mainMod, I, movefocus, u
+bind = $mainMod, E, movefocus, d
+
+# Switch workspaces with mainMod + [0-9]
+bind = $mainMod, Q, workspace, 1
+bind = $mainMod, W, workspace, 2
+bind = $mainMod, F, workspace, 3
+bind = $mainMod, P, workspace, 4
+bind = $mainMod, G, workspace, 5
+bind = $mainMod, J, workspace, 6
+bind = $mainMod, L, workspace, 7
+bind = $mainMod, U, workspace, 8
+bind = $mainMod, Y, workspace, 9
+bind = $mainMod, Æ, workspace, 10
+
+# Move active window to a workspace with mainMod + SHIFT + [0-9]
+bind = $mainMod SHIFT, Q, movetoworkspace, 1
+bind = $mainMod SHIFT, W, movetoworkspace, 2
+bind = $mainMod SHIFT, F, movetoworkspace, 3
+bind = $mainMod SHIFT, P, movetoworkspace, 4
+bind = $mainMod SHIFT, G, movetoworkspace, 5
+bind = $mainMod SHIFT, J, movetoworkspace, 6
+bind = $mainMod SHIFT, L, movetoworkspace, 7
+bind = $mainMod SHIFT, U, movetoworkspace, 8
+bind = $mainMod SHIFT, Y, movetoworkspace, 9
+bind = $mainMod SHIFT, Æ, movetoworkspace, 10
+
+# Scroll through existing workspaces with mainMod + scroll
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+
+# Move/resize windows with mainMod + LMB/RMB and dragging
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+{{ else }}
+
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r
 bind = $mainMod, up, movefocus, u
 bind = $mainMod, down, movefocus, d
+
 
 bind = $mainMod, H, movefocus, l
 bind = $mainMod, L, movefocus, r
@@ -152,3 +220,4 @@ bind = $mainMod SHIFT, 0, movetoworkspace, 10
 # Move/resize windows with mainMod + LMB/RMB and dragging
 bindm = $mainMod SHIFT, mouse:272, movewindow
 bindm = $mainMod CTRL, mouse:272, resizewindow
+{{ end }}

@@ -402,9 +402,6 @@ kset({'n','v'},"n","h",{})
 kset({'n','v'},"o","l",{})
 kset({'n','v'},"l","a",{})
 
-<<<<<<< Updated upstream
-=======
-
 -- move stuff in VISUAL mode 
 kset("v", "I", ":m '<-2<CR>gv=gv")
 kset("v", "E", ":m '>+1<CR>gv=gv")
@@ -418,64 +415,6 @@ kset("v", "J", ":m '>+1<CR>gv=gv")
 
 {{ end }}
 
-
--- undotree
-kset("n","<leader>uu", vim.cmd.UndotreeToggle)
-
--- [[ plug-in conf ]]
-require("mason").setup({
-  ui = {
-    icons = {
-      package_installed = "",
-      package_pending = "",
-      package_uninstalled = "",
-    },
-  }
-})
-
-require("mason-lspconfig").setup()
-local lspconfig = require('lspconfig')
-lspconfig.lua_ls.setup {}
-lspconfig.csharp_ls.setup {}
-lspconfig.pylyzer.setup {}
-lspconfig.arduino_language_server.setup {
-    cmd = {
-        "arduino-language-server",
-        "-cli", "/usr/bin/arduino-cli",
-        "-clangd", "/usr/bin/clangd"
-    }
-}
-lspconfig.ltex.setup { settings = { ['ltex'] = { language="da_DK" } } }
-lspconfig.rust_analyzer.setup {}
-require("mason-null-ls").setup({
-  ensure_installed = {
-    -- Opt to list sources here, when available in mason.
-  },
-  automatic_installation = false,
-  handlers = {},
-})
-
-require("null-ls").setup({
-  sources = {
-    -- Anything not supported by mason.
-  }
-})
-
-
-
-vim.g.vimtex_view_method = 'zathura'
-
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-      },
-})
-
->>>>>>> Stashed changes
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = false,

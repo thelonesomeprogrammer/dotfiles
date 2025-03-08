@@ -22,16 +22,13 @@ monitor=eDP-1,1920x1080@60,0x0,1
 
 # starting some apps
 exec-once = dunst
-<<<<<<< Updated upstream
 exec-once = /home/marrinus/.config/hypr/cleanup_after_start.sh
 exec-once = batsignal -bie -f90 -D "shutdown now"
 exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-=======
 {{ if eq .laptop true }}
 exec-once = batsignal -bie -f90 -D "shutdown now"
 {{ end }}
 {{ if eq .rusty_bar true }}
->>>>>>> Stashed changes
 exec-once = rusty-bar
 {{ end }}
 
@@ -122,20 +119,11 @@ $terminal = alacritty
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 bind = $mainMod, S, exec, vivaldi-stable
-<<<<<<< Updated upstream
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, ENTER, exec, $terminal
 bind = $mainMod, A, killactive, 
 bind = $mainMod, F, togglefloating, 
 bind = $mainMod, R, exec, fuzzel -T "alacritty -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
-=======
-bind = $mainMod, T, exec, wezterm
-bind = $mainMod, A, killactive, 
-bind = $mainMod, R, exec, fuzzel -T "wezterm -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
-bind = $mainMod SHIFT, Q, exit, 
-
-
->>>>>>> Stashed changes
 
 # Move focus with mainMod + arrow keys
 {{ if eq .keyboard true }}

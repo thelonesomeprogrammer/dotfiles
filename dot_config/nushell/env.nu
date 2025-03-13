@@ -80,6 +80,7 @@ $env.NU_PLUGIN_DIRS = [
 $env.PATH = ($env.PATH | prepend '~/.cargo/bin/')
 $env.PATH = ($env.PATH | prepend '~/.config/composer/vendor/bin/')
 $env.PATH = ($env.PATH | prepend "~/.yarn/bin")
+env.SSH_AUTH_SOCK = (ssh-agent | get SSH_AUTH_SOCK)
 
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu

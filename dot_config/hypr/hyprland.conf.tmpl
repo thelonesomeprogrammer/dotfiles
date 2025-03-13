@@ -21,6 +21,7 @@ monitor=eDP-1,1920x1080@60,0x0,1
 
 
 # starting some apps
+exec-once = ssh-agent -D -a /run/user/1000/ssh-agent.socket
 exec-once = dunst
 exec-once = /home/marrinus/.config/hypr/cleanup_after_start.sh
 exec-once = batsignal -bie -f90 -D "shutdown now"

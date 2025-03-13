@@ -78,7 +78,6 @@ $env.NU_PLUGIN_DIRS = [
     # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-$env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
 $env.PATH = ($env.PATH | prepend '~/.cargo/bin/')
 $env.PATH = ($env.PATH | prepend '~/.config/composer/vendor/bin/')
 $env.PATH = ($env.PATH | prepend "~/.yarn/bin")

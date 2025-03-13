@@ -79,7 +79,7 @@ $env.NU_PLUGIN_DIRS = [
 ]
 $env.PATH = ($env.PATH | prepend '~/.cargo/bin/')
 $env.PATH = ($env.PATH | prepend '~/.config/composer/vendor/bin/')
-$env.PATH = ($env.PATH | prepend "/home/user/.yarn/bin")
+$env.PATH = ($env.PATH | prepend "~/.yarn/bin")
 
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu

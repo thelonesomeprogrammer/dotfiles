@@ -374,10 +374,10 @@ vim.g.mapleader = " "
 local kset = vim.keymap.set
 -- built-in
 kset('n', '<leader>fe', vim.cmd.Ex, {})
-kset('n', '<space>e', vim.diagnostic.open_float)
+kset('n', '<leader>e', vim.diagnostic.open_float)
 kset('n', '[d', vim.diagnostic.goto_prev)
 kset('n', ']d', vim.diagnostic.goto_next)
-kset('n', '<space>q', vim.diagnostic.setloclist)
+kset('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- telescope
 local bul = require('telescope.builtin')

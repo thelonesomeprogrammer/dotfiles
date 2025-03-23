@@ -383,9 +383,9 @@ kset('n', '<leader>q', vim.diagnostic.setloclist)
 local bul = require('telescope.builtin')
 kset('n', '<leader>ff', bul.find_files, {})
 kset('n', '<leader>fg', bul.git_files, {})
-kset('n', '<leader><leader>d', bul.diagnostics, {})
-kset('n', '<leader>bb', bul.buffers, {})
-kset('n', '<leader><leader>s', bul.spell_suggest, {})
+kset('n', '<leader>fd', bul.diagnostics, {})
+kset('n', '<leader>fb', bul.buffers, {})
+kset('n', '<leader>fs', bul.spell_suggest, {})
 
 -- move stuff in VISUAL mode
 kset("v", "<S-Up>", ":m '<-2<CR>gv=gv")

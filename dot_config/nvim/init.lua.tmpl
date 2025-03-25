@@ -280,15 +280,23 @@ require('lazy').setup({
 				},
 
 				mapping = {
-					['<C-p>'] = cmp.mapping.select_prev_item(),
-					['<C-n>'] = cmp.mapping.select_next_item(),
-					['<S-Tab>'] = cmp.mapping.select_prev_item(),
-					['<Tab>'] = cmp.mapping.select_next_item(),
-					['<C-e>'] = cmp.mapping.close(),
-					['<CR>'] = cmp.mapping.confirm({
+{{ if eq .keyboard true }}
+					['<Up>   '] = cmp.mapping.select_prev_item(),
+					['<Down> '] = cmp.mapping.select_next_item(),
+					['<Left> '] = cmp.mapping.close(),
+					['<Right>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Insert,
 						select = true,
 					})
+{{ else }}
+					['<C-Up>   '] = cmp.mapping.select_prev_item(),
+					['<C-Down> '] = cmp.mapping.select_next_item(),
+					['<C-Left> '] = cmp.mapping.close(),
+					['<C-Right>'] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Insert,
+						select = true,
+					})
+{{ end }}
 				},
 				-- Installed sources:
 				sources = {
@@ -328,7 +336,12 @@ require('lazy').setup({
 			})
 		end,
 	},
-	{ 'stevearc/oil.nvim', dependencies = { "nvim-tree/nvim-web-devicons" } },
+	{ 
+		'stevearc/oil.nvim', 
+		opts = {}, 
+		dependencies = { "nvim-tree/nvim-web-devicons" }, 
+		lazy = false
+	},
 })
 
 --[[ opts.lua ]]
@@ -435,4 +448,8 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
 vim.g.copilot_no_tab_map = true
+{{ if eq .keyboard true }}
+vim.api.nvim_set_keymap("i", "O", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+{{ else }}
 vim.api.nvim_set_keymap("i", "<S-Right>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+{{ end }}

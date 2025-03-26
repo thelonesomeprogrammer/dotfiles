@@ -123,7 +123,6 @@ bind = $mainMod, S, exec, vivaldi-stable
 bind = $mainMod, T, exec, $terminal
 bind = $mainMod, ENTER, exec, $terminal
 bind = $mainMod, A, killactive, 
-bind = $mainMod, F, togglefloating, 
 bind = $mainMod, R, exec, fuzzel -T "alacritty -e" -b 11111199 -t cccccccc -s 111111dd -S cccccccc -P 0 -x 10 -y 10 -l 15 -w 40
 
 # Move focus with mainMod + arrow keys
@@ -168,6 +167,9 @@ bindm = $mainMod, mouse:272, movewindow
 bindm = $mainMod, mouse:273, resizewindow
 
 {{ else }}
+
+bind = $mainMod, F, togglefloating, 
+
 
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r

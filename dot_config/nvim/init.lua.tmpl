@@ -3,10 +3,10 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then -- Use uv.fs_stat instead of loop.fs_stat
 	vim.fn.system({
 		"git",
-		"clone", 
+		"clone",
 		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git", 
-		"--branch=stable", 
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
 		lazypath
 	})
 end
@@ -78,7 +78,7 @@ require('lazy').setup({
 		config = function()
 			vim.g.vimtex_view_method = 'zathura'
 			vim.g.vimtex_compiler_method = 'latexrun'
-			vim.g.vimtex_compiler_latexrun = 
+			vim.g.vimtex_compiler_latexrun =
 			{ options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' } }
 			vim.g.vimtex_compiler_latexrun_engines = {
 				_ = 'xelatex',
@@ -200,7 +200,7 @@ require('lazy').setup({
 			{
 				'nvim-telescope/telescope-fzf-native.nvim',
 				build = 'make',
-				cond = function() 
+				cond = function()
 					return vim.fn.executable("make") == 1
 				end,
 			},
@@ -345,10 +345,10 @@ require('lazy').setup({
 		end,
 	},
 
-	{ 
-		'stevearc/oil.nvim', 
-		opts = {}, 
-		dependencies = { "nvim-tree/nvim-web-devicons" }, 
+	{
+		'stevearc/oil.nvim',
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		lazy = false
 	},
 

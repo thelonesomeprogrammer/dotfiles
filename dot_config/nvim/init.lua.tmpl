@@ -3,8 +3,11 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then -- Use uv.fs_stat instead of loop.fs_stat
 	vim.fn.system({
 		"git",
-		"clone", "--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath
+		"clone", 
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git", 
+		"--branch=stable", 
+		lazypath
 	})
 end
 vim.opt.rtp:prepend(lazypath)
@@ -75,13 +78,13 @@ require('lazy').setup({
 		config = function()
 			vim.g.vimtex_view_method = 'zathura'
 			vim.g.vimtex_compiler_method = 'latexrun'
-			vim.g.vimtex_compiler_latexrun = { options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' }, }
+			vim.g.vimtex_compiler_latexrun = 
+			{ options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' } }
 			vim.g.vimtex_compiler_latexrun_engines = {
 				_ = 'xelatex',
 				pdflatex = 'pdflatex',
 				lualatex = 'lualatex',
-				xelatex =
-				'xelatex',
+				xelatex = 'xelatex',
 			}
 		end
 	},
@@ -93,7 +96,6 @@ require('lazy').setup({
 			{ "<leader>uu", ":UndotreeToggle<CR>", mode = { "n" }, desc = "undotree toggle", },
 		}
 	},
-
 
 	{
 		'williamboman/mason.nvim',
@@ -128,6 +130,9 @@ require('lazy').setup({
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			formatters_by_ft = {
+				rust = { "yew-fmt" },
+				python = { "ruff" },
+				lua = { "stylua" },
 				php = { "php_cs_fixer" },
 				json = { "dprint" },
 				markdown = { "dprint" },
@@ -158,7 +163,7 @@ require('lazy').setup({
 	},
 
 
-	{ 'mrcjkb/rustaceanvim',         version = '^5', lazy = false },
+	{ 'mrcjkb/rustaceanvim', version = '^5', lazy = false },
 
 	{
 		'nvim-lualine/lualine.nvim',
@@ -184,6 +189,7 @@ require('lazy').setup({
 	},
 
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
+
 	{ 'numToStr/Comment.nvim' },
 
 	{
@@ -194,7 +200,9 @@ require('lazy').setup({
 			{
 				'nvim-telescope/telescope-fzf-native.nvim',
 				build = 'make',
-				cond = function() return vim.fn.executable("make") == 1 end,
+				cond = function() 
+					return vim.fn.executable("make") == 1
+				end,
 			},
 		},
 		extensions = {
@@ -203,7 +211,6 @@ require('lazy').setup({
 				override_generic_sorter = true, -- override the generic sorter
 				override_file_sorter = true, -- override the file sorter
 				case_mode = "smart_case",   -- or "ignore_case" or "respect_case"
-				-- the default case_mode is "smart_case"
 			},
 		}
 	},
@@ -310,10 +317,11 @@ require('lazy').setup({
 						},
 					},
 					{ name = 'path' },                                  -- file paths
-					{ name = 'nvim_lsp',               keyword_length = 3 }, -- from language server
+					{ name = 'nvim_lsp', keyword_length = 3 }, -- from language server
 					{ name = 'nvim_lsp_signature_help' },               -- display function signatures with current parameter emphasized
-					{ name = 'buffer',                 keyword_length = 2 }, -- source current buffer
+					{ name = 'buffer', keyword_length = 2 }, -- source current buffer
 					{ name = 'luasnip' },
+
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
@@ -336,17 +344,19 @@ require('lazy').setup({
 			})
 		end,
 	},
+
 	{ 
 		'stevearc/oil.nvim', 
 		opts = {}, 
 		dependencies = { "nvim-tree/nvim-web-devicons" }, 
 		lazy = false
 	},
+
 	{
 		"stsewd/spotify.nvim",
 		build = ":UpdateRemotePlugins",
 		config = function()
-			require("spotify").setup({ notify_after_action = false, notification = { backend = "notify", }, })
+			require("spotify").setup({ notify_after_action = false, notification = { backend = "notify" } })
 		end,
 	},
 
@@ -386,7 +396,6 @@ opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.config/nvim/undotree_undofiles"
 opt.undofile = true
 
-
 -- [[ Search ]]
 opt.hlsearch = false
 opt.ignorecase = true
@@ -406,7 +415,6 @@ opt.shortmess = vim.opt.shortmess + { c = true }
 vim.g.mapleader = " "
 local kset = vim.keymap.set
 -- built-in
-kset('n', '<leader>fe', vim.cmd.Ex, {})
 kset('n', '<leader>e', vim.diagnostic.open_float)
 kset('n', '[d', vim.diagnostic.goto_prev)
 kset('n', ']d', vim.diagnostic.goto_next)
@@ -419,12 +427,6 @@ kset('n', '<leader>fg', bul.git_files, {})
 kset('n', '<leader>fd', bul.diagnostics, {})
 kset('n', '<leader>fb', bul.buffers, {})
 kset('n', '<leader>fs', bul.spell_suggest, {})
-
--- move stuff in VISUAL mode
-kset("v", "<S-Up>", ":m '<-2<CR>gv=gv")
-kset("v", "<S-Down>", ":m '>+1<CR>gv=gv")
-kset("v", "K", ":m '<-2<CR>gv=gv")
-kset("v", "<J>", ":m '>+1<CR>gv=gv")
 
 {{ if eq .keyboard true }}
   -- keyboard
@@ -439,15 +441,12 @@ kset({'n','v'},"l","a",{})
 kset("v", "I", ":m '<-2<CR>gv=gv")
 kset("v", "E", ":m '>+1<CR>gv=gv")
 {{ else }}
-
 -- move stuff in VISUAL mode 
 kset("v", "<S-Up>", ":m '<-2<CR>gv=gv")
 kset("v", "<S-Down>", ":m '>+1<CR>gv=gv")
 kset("v", "K", ":m '<-2<CR>gv=gv")
 kset("v", "J", ":m '>+1<CR>gv=gv")
-
 {{ end }}
-
 
 vim.keymap.set("n", "<leader>ss", ":Spotify play/pause<CR>", { silent = true })
 vim.keymap.set("n", "<leader>sj", ":Spotify next<CR>", { silent = true })

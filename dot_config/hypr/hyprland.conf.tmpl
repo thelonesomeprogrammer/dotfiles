@@ -15,6 +15,11 @@
 {{ if eq .dual_monitor true }}
 monitor=DP-1,preferred,0x0,auto
 monitor=HDMI-A-1,preferred,1920x0,auto
+
+# Window Rolues
+# See https://wiki.hyprland.org/Configuring/WindowRules/ for more
+workspace = 1, monitor:DP-1, default:true
+workspace = 2, monitor:HDMI-A-1, default:true
 {{ else }}
 monitor=eDP-1,1920x1080@60,0x0,1
 {{ end }}

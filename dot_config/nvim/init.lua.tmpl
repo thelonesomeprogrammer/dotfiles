@@ -79,8 +79,7 @@ require('lazy').setup({
 		config = function()
 			vim.g.vimtex_view_method = 'zathura'
 			vim.g.vimtex_compiler_method = 'latexrun'
-			vim.g.vimtex_compiler_latexrun =
-			{ options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' } }
+			vim.g.vimtex_compiler_latexrun ={ options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' } }
 			vim.g.vimtex_compiler_latexrun_engines = {
 				_ = 'xelatex',
 				pdflatex = 'pdflatex',

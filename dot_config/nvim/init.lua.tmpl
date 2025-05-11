@@ -106,6 +106,7 @@ require('lazy').setup({
 	},
 
 	{ 'echasnovski/mini.indentscope' },
+
 	{
 		'catppuccin/nvim',
 		name = 'catppuccin',
@@ -140,8 +141,7 @@ require('lazy').setup({
 		config = function()
 			vim.g.vimtex_view_method = 'zathura'
 			vim.g.vimtex_compiler_method = 'latexrun'
-			vim.g.vimtex_compiler_latexrun =
-			{ options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' } }
+			vim.g.vimtex_compiler_latexrun ={ options = { '-verbose-cmds', '--latex-args="-syntax=1"', '--bibtex-cmd=biber' } }
 			vim.g.vimtex_compiler_latexrun_engines = {
 				_ = 'xelatex',
 				pdflatex = 'pdflatex',
@@ -350,17 +350,17 @@ require('lazy').setup({
 
 				mapping = {
 {{ if eq .keyboard true }}
-					['<Up>   '] = cmp.mapping.select_prev_item(),
-					['<Down> '] = cmp.mapping.select_next_item(),
-					['<Left> '] = cmp.mapping.close(),
+					['<Up>'   ] = cmp.mapping.select_prev_item(),
+					['<Down>' ] = cmp.mapping.select_next_item(),
+					['<Left>' ] = cmp.mapping.close(),
 					['<Right>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Insert,
 						select = true,
 					})
 {{ else }}
-					['<C-Up>   '] = cmp.mapping.select_prev_item(),
-					['<C-Down> '] = cmp.mapping.select_next_item(),
-					['<C-Left> '] = cmp.mapping.close(),
+					['<C-Up>'   ] = cmp.mapping.select_prev_item(),
+					['<C-Down>' ] = cmp.mapping.select_next_item(),
+					['<C-Left>' ] = cmp.mapping.close(),
 					['<C-Right>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Insert,
 						select = true,
@@ -490,22 +490,30 @@ kset('n', '<leader>fd', bul.diagnostics, {})
 kset('n', '<leader>fb', bul.buffers, {})
 kset('n', '<leader>fs', bul.spell_suggest, {})
 
+
 {{ if eq .keyboard true }}
   -- keyboard
-kset({'n','v'},"m","i",{})
-kset({'n','v'},"i","k",{})
-kset({'n','v'},"e","j",{})
-kset({'n','v'},"n","h",{})
-kset({'n','v'},"o","l",{})
-kset({'n','v'},"l","a",{})
+kset({ 'n', 'v' }, "m", "i", {})
+kset({ 'n', 'v' }, "i", "k", {})
+kset({ 'n', 'v' }, "e", "j", {})
+kset({ 'n', 'v' }, "n", "h", {})
+kset({ 'n', 'v' }, "o", "l", {})
+kset({ 'n', 'v' }, "l", "a", {})
+
+kset({ 'n' }, "h", "n", {})
+kset({ 'n' }, "H", "N", {})
+
+kset({ 'n' }, "M", "I", {})
+kset({ 'n' }, "L", "A", {})
+
+kset({ 'n' }, "<C-d>", "<C-u>zz", {})
+kset({ 'n' }, "<C-b>", "<C-d>zz", {})
 
 -- move stuff in VISUAL mode 
 kset("v", "I", ":m '<-2<CR>gv=gv")
 kset("v", "E", ":m '>+1<CR>gv=gv")
 {{ else }}
 -- move stuff in VISUAL mode 
-kset("v", "<S-Up>", ":m '<-2<CR>gv=gv")
-kset("v", "<S-Down>", ":m '>+1<CR>gv=gv")
 kset("v", "K", ":m '<-2<CR>gv=gv")
 kset("v", "J", ":m '>+1<CR>gv=gv")
 {{ end }}
